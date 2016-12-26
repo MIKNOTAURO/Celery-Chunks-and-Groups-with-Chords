@@ -2,6 +2,7 @@
 An example which executes a Celery task using Celery Groups and Celery chunks and monitors memory usage
 
 `pip intall Celery`
+
 `pip install Redis`
 
 Running Celery
