@@ -19,6 +19,9 @@ Running Celery
  `python -m memory_profiler with_group.py`
  
  **To Monitor CPU usage**
+
+`pip install line-profiler`
+
 uncomment `@profile` decorators in with_chunk.py and with_group.py
 run following command while staying in the directory
 
