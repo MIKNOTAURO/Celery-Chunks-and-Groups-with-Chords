@@ -10,6 +10,7 @@ Running Celery
 **To Monitor Memory usage**
 
 `pip install memory-profiler`
+
 `python -m memory_profiler with_chunk.py`
 
  *OR*
