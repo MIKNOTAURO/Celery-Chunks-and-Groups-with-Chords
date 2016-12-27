@@ -3,15 +3,17 @@ An example which executes a Celery task using Celery Groups and Celery chunks an
 
 You have to install memory-profiler and line-profiler and redis-server as root user, run following commands
 
-## Install redis on OSX
+### Install redis on OSX
 `brew install redis`
 `brew upgrade redis`
 
-## Install Redis on Ubuntu
+### Install Redis on Ubuntu
 `sudo apt-get install redis-server`
 
-## Start Redis Server
+### Start Redis Server
 `sudo service redis-server start`
+
+### Install Line-Profiler and Memory-Profiler
 
 `sudo pip install memory-profiler`
 
