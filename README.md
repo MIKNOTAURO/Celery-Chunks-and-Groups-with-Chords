@@ -5,6 +5,7 @@ You have to install memory-profiler and line-profiler and redis-server as root u
 
 ### Install redis on OSX
 `brew install redis`
+
 `brew upgrade redis`
 
 ### Install Redis on Ubuntu
