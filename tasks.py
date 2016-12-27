@@ -1,30 +1,18 @@
+"""
+This module contains Celery tasks
+"""
 from celery_app import app
+from constants import LOOP_RANGE
 
 
 @app.task
-def group_task(i):
-    for x in range(0, 10):
+def group_task(_id):
+    for x in range(LOOP_RANGE):
         print "in loop %d" % x
-    print "loop for %d" % i
-    return i
-
-
-@app.task
-def chunk_task(i):
-    arr = []
-    for _id in i:
-        for x in range(0, 10):
-            pass
-        arr.append(_id)
-    return arr
+    print "loop for %d" % _id
+    return _id
 
 
 @app.task
 def callback(*args):
     print "callback kamal args=%r" % args
-
-
-@app.task
-def chuncker(ch):
-    result = ch()
-    print "chunker", result

@@ -1,14 +1,33 @@
-from memory_profiler import profile as mp
-from line_profiler import LineProfiler
+"""
+This module runs a celery task Synchronously(Just to monitor memory/CPU usage,
+although we can run it Asynchronously). This module divides the list of input parameters
+into chunks and run task for each chunk repeatedly without building a separate task for each integer
+in Message Queue instead it builds task for each chunk in Message Queue(Redis Queue).
+"""
+# App Specific Imports
+from constants import TOTAL_TASKS, CHUNK_SIZE
 from tasks import group_task, callback
+# 3rd Party Imports
+from memory_profiler import profile as mp
 from celery import chord
 
 
-@mp
-# @profile
+@mp  # Decorator for memory_profiler
+# @profile  # Decorator for line_profiler (CPU Usage)
 def run():
-    chunk = group_task.chunks(zip(range(100)), 10)
-    chrd = chord(chunk.group())(callback.s())
-    chrd.get()
+    """
+    This module runs a group of Celery tasks for chunks of input parameters
+    """
+    """
+    Celery.task.chunks function makes chunks of input parameters.
+    Here I am making chunks of 45000 integers,
+    each chunk would contain 1000 integers (a chunk is an array)
+    """
+    chunk = group_task.chunks(zip(range(TOTAL_TASKS)), CHUNK_SIZE)
+    # Using Celery chord to receive a callback with results, when all tasks has finished
+    # Converting chunk to groups because chord doesn't seem to work ideally with chunk.
+    celery_chord = chord(chunk.group())(callback.s())
+    # Running task
+    celery_chord.get()
 if __name__ == '__main__':
     run()
