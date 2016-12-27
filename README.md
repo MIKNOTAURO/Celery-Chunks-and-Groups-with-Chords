@@ -1,7 +1,11 @@
 # Celery-Chunks-and-Groups-with-Chords
 An example which executes a Celery task using Celery Groups and Celery chunks and monitors memory usage
 
-You have to install memory-profiler and line-profiler and redis-server as root user, run following commands
+You can change number of tasks, chunk size and loop limit in `constants.py`
+
+# Steps
+
+## 1- Install Redis-Server
 
 ### Install redis on OSX
 `brew install redis`
@@ -14,14 +18,18 @@ You have to install memory-profiler and line-profiler and redis-server as root u
 ### Start Redis Server
 `sudo service redis-server start`
 
-### Install Line-Profiler and Memory-Profiler
+## 2- Create a virtualenv and install requirements.txt
 
-`sudo pip install memory-profiler`
+`virtualenv env`
 
-`sudo pip install line-profiler`
+`source env/bin/activate`
 
-Move to project directory and run Celery Worker
+`pip install -r requirements.txt`
+
+## 3- Run Celery worker
 
 `celery -A tasks worker --concurrency=4 --loglevel=info --autoscale=12,3`
 
-Now simply run the `monitor-usage.py`
+## 4- Run `monitor_usage.py`
+
+`python monitor_usage.py`
