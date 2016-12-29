@@ -1,3 +1,5 @@
-TOTAL_TASKS = 10
-CHUNK_SIZE = 2
+TOTAL_TASKS = 100000  # modify this as per requirement
+CHUNK_SIZE = TOTAL_TASKS * 0.1  # modify this as per requirement
 LOOP_RANGE = 10
+
+

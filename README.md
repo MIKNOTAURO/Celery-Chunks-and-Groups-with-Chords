@@ -28,8 +28,11 @@ You can change number of tasks, chunk size and loop limit in `constants.py`
 
 ## 3- Run Celery worker
 
-`celery -A tasks worker --concurrency=4 --loglevel=info --autoscale=12,3`
+RUN file run_celery.py or command -> `celery -A tasks worker -n chords --loglevel=info`
 
 ## 4- Run `monitor_usage.py`
 
 `python monitor_usage.py`
+
+## 5- Monitor Celery Flower
+RUN file run_flower.py or command `celery -A tasks flower --port=5511 --loglevel=info`

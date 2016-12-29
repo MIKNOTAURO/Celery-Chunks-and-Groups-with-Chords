@@ -23,11 +23,12 @@ def run():
     Here I am making chunks of 45000 integers,
     each chunk would contain 1000 integers (a chunk is an array)
     """
+    # for tasks in xrange(1, TOTAL_TASKS, 1000):
     chunk = group_task.chunks(zip(range(TOTAL_TASKS)), CHUNK_SIZE)
     # Using Celery chord to receive a callback with results, when all tasks has finished
     # Converting chunk to groups because chord doesn't seem to work ideally with chunk.
-    celery_chord = chord(chunk.group())(callback.s())
+    chord(chunk.group())(callback.s())
     # Running task
-    celery_chord.get()
+    # celery_chord.get()
 if __name__ == '__main__':
     run()
