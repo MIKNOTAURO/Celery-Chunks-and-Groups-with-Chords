@@ -3,3 +3,4 @@ line-profiler==2.0
 memory-profiler==0.41
 psutil==5.0.1
 redis==2.10.5
+flower==0.8.3

@@ -8,11 +8,14 @@ from constants import LOOP_RANGE
 @app.task
 def group_task(_id):
     for x in range(LOOP_RANGE):
-        print "in loop %d" % x
+        print "in loop %d" % _id
+        pass
     print "loop for %d" % _id
     return _id
 
 
 @app.task
 def callback(*args):
-    print "callback kamal args=%r" % args
+    for task in args:
+        print "each task size:%s" % len(task)
+    # print "callback kamal args=%r" % args
